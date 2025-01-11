@@ -1,14 +1,14 @@
-package com.example.simpleruntrackerbackend;
+package com.example.simpleruntrackerbackend.entities.trainings;
 
 
+import com.example.simpleruntrackerbackend.TrainingType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "which_training")
 public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +16,9 @@ public class Training {
 
     private TrainingType trainingType;
 
-    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Segment> segments = new ArrayList<>();
-
     private LocalDate date;
 
     private String comment;
-
-    public Training() {
-    }
 
     public int getId() {
         return id;
@@ -42,19 +36,11 @@ public class Training {
         this.trainingType = trainingType;
     }
 
-    public List<Segment> getSegments() {
-        return segments;
-    }
-
-    public void setSegments(List<Segment> segments) {
-        this.segments = segments;
-    }
-
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDateTime(LocalDate date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

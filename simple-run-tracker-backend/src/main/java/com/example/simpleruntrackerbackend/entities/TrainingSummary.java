@@ -1,4 +1,7 @@
-package com.example.simpleruntrackerbackend;
+package com.example.simpleruntrackerbackend.entities;
+
+import com.example.simpleruntrackerbackend.entities.trainings.CompletedTraining;
+import com.example.simpleruntrackerbackend.entities.trainings.Training;
 
 import java.util.List;
 
@@ -6,9 +9,9 @@ public class TrainingSummary {
     private int totalTrainingCount;
     private long totalDuration;
     private long totalDistance;
-    private List<Training> trainings;
+    private List<CompletedTraining> trainings;
 
-    public TrainingSummary(int totalTrainingCount, long totalDuration, long totalDistance, List<Training> trainings) {
+    public TrainingSummary(int totalTrainingCount, long totalDuration, long totalDistance, List<CompletedTraining> trainings) {
         this.totalTrainingCount = totalTrainingCount;
         this.totalDuration = totalDuration;
         this.totalDistance = totalDistance;
@@ -27,7 +30,7 @@ public class TrainingSummary {
         return totalDistance;
     }
 
-    public List<Training> getTrainings() {
+    public List<CompletedTraining> getTrainings() {
         return trainings;
     }
 }

@@ -1,10 +1,13 @@
 package com.example.simpleruntrackerbackend;
 
+import com.example.simpleruntrackerbackend.entities.segments.CompletedSegment;
+import com.example.simpleruntrackerbackend.entities.trainings.CompletedTraining;
+import com.example.simpleruntrackerbackend.entities.trainings.Training;
+import com.example.simpleruntrackerbackend.repositories.TrainingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -15,29 +18,29 @@ public class BeginDataLoader implements CommandLineRunner {
     }
 
     private Training createTraining1() {
-        Training training = new Training();
+        CompletedTraining training = new CompletedTraining();
         training.setTrainingType(TrainingType.LONG);
-        training.setDateTime(LocalDate.of(2025, 1, 1));
+        training.setDate(LocalDate.of(2025, 1, 1));
         training.setComment("First training in 2025");
 
-        Segment segment1 = new Segment();
+        CompletedSegment segment1 = new CompletedSegment();
         segment1.setName("Warm-up");
-        segment1.setDuration(600L);
-        segment1.setDistance(1000L);
+        segment1.setDurationInSeconds(600L);
+        segment1.setDistanceInMeters(1000L);
         segment1.setAverageHeartRate(100L);
         segment1.setTraining(training);
 
-        Segment segment2 = new Segment();
+        CompletedSegment segment2 = new CompletedSegment();
         segment2.setName("Main part");
-        segment2.setDuration(1800L);
-        segment2.setDistance(3000L);
+        segment2.setDurationInSeconds(1800L);
+        segment2.setDistanceInMeters(3000L);
         segment2.setAverageHeartRate(120L);
         segment2.setTraining(training);
 
-        Segment segment3 = new Segment();
+        CompletedSegment segment3 = new CompletedSegment();
         segment3.setName("Cool-down");
-        segment3.setDuration(600L);
-        segment3.setDistance(1000L);
+        segment3.setDurationInSeconds(600L);
+        segment3.setDistanceInMeters(1000L);
         segment3.setAverageHeartRate(100L);
         segment3.setTraining(training);
 
@@ -47,86 +50,86 @@ public class BeginDataLoader implements CommandLineRunner {
     }
 
     private Training createTraining2() {
-        Training training = new Training();
+        CompletedTraining training = new CompletedTraining();
         training.setTrainingType(TrainingType.SPEED);
-        training.setDateTime(LocalDate.of(2025, 1, 3));
+        training.setDate(LocalDate.of(2025, 1, 3));
         training.setComment("Second training in 2025 - speed training");
 
-        Segment segment1 = new Segment();
+        CompletedSegment segment1 = new CompletedSegment();
         segment1.setName("Warm-up");
-        segment1.setDuration(600L);
-        segment1.setDistance(1000L);
+        segment1.setDurationInSeconds(600L);
+        segment1.setDistanceInMeters(1000L);
         segment1.setAverageHeartRate(100L);
         segment1.setTraining(training);
 
-        Segment segment2 = new Segment();
+        CompletedSegment segment2 = new CompletedSegment();
         segment2.setName("Main part");
-        segment2.setDuration(1800L);
-        segment2.setDistance(3000L);
+        segment2.setDurationInSeconds(1800L);
+        segment2.setDistanceInMeters(3000L);
         segment2.setAverageHeartRate(120L);
         segment2.setTraining(training);
 
         //jogs segments 4x100m/100m
-        Segment segment3 = new Segment();
+        CompletedSegment segment3 = new CompletedSegment();
         segment3.setName("Fast jog 100m 1");
-        segment3.setDuration(30L);
-        segment3.setDistance(100L);
+        segment3.setDurationInSeconds(30L);
+        segment3.setDistanceInMeters(100L);
         segment3.setAverageHeartRate(null);
         segment3.setTraining(training);
 
-        Segment segment4 = new Segment();
+        CompletedSegment segment4 = new CompletedSegment();
         segment4.setName("Slow jog 100m 1");
-        segment4.setDuration(60L);
-        segment4.setDistance(100L);
+        segment4.setDurationInSeconds(60L);
+        segment4.setDistanceInMeters(100L);
         segment4.setAverageHeartRate(null);
         segment4.setTraining(training);
 
-        Segment segment5 = new Segment();
+        CompletedSegment segment5 = new CompletedSegment();
         segment5.setName("Fast jog 100m 2");
-        segment5.setDuration(30L);
-        segment5.setDistance(100L);
+        segment5.setDurationInSeconds(30L);
+        segment5.setDistanceInMeters(100L);
         segment5.setAverageHeartRate(null);
         segment5.setTraining(training);
 
-        Segment segment6 = new Segment();
+        CompletedSegment segment6 = new CompletedSegment();
         segment6.setName("Slow jog 100m 2");
-        segment6.setDuration(60L);
-        segment6.setDistance(100L);
+        segment6.setDurationInSeconds(60L);
+        segment6.setDistanceInMeters(100L);
         segment6.setAverageHeartRate(null);
         segment6.setTraining(training);
 
-        Segment segment7 = new Segment();
+        CompletedSegment segment7 = new CompletedSegment();
         segment7.setName("Fast jog 100m 3");
-        segment7.setDuration(30L);
-        segment7.setDistance(100L);
+        segment7.setDurationInSeconds(30L);
+        segment7.setDistanceInMeters(100L);
         segment7.setAverageHeartRate(null);
         segment7.setTraining(training);
 
-        Segment segment8 = new Segment();
+        CompletedSegment segment8 = new CompletedSegment();
         segment8.setName("Slow jog 100m 3");
-        segment8.setDuration(60L);
-        segment8.setDistance(100L);
+        segment8.setDurationInSeconds(60L);
+        segment8.setDistanceInMeters(100L);
         segment8.setAverageHeartRate(null);
         segment8.setTraining(training);
 
-        Segment segment9 = new Segment();
+        CompletedSegment segment9 = new CompletedSegment();
         segment9.setName("Fast jog 100m 4");
-        segment9.setDuration(30L);
-        segment9.setDistance(100L);
+        segment9.setDurationInSeconds(30L);
+        segment9.setDistanceInMeters(100L);
         segment9.setAverageHeartRate(null);
         segment9.setTraining(training);
 
-        Segment segment10 = new Segment();
+        CompletedSegment segment10 = new CompletedSegment();
         segment10.setName("Slow jog 100m 4");
-        segment10.setDuration(60L);
-        segment10.setDistance(100L);
+        segment10.setDurationInSeconds(60L);
+        segment10.setDistanceInMeters(100L);
         segment10.setAverageHeartRate(null);
         segment10.setTraining(training);
 
-        Segment segment11 = new Segment();
+        CompletedSegment segment11 = new CompletedSegment();
         segment11.setName("Cool-down");
-        segment11.setDistance(1000L);
-        segment11.setDuration(600L);
+        segment11.setDistanceInMeters(1000L);
+        segment11.setDurationInSeconds(600L);
         segment11.setAverageHeartRate(100L);
         segment11.setTraining(training);
 
@@ -136,29 +139,29 @@ public class BeginDataLoader implements CommandLineRunner {
     }
 
     private Training createTraining3() {
-        Training training = new Training();
+        CompletedTraining training = new CompletedTraining();
         training.setTrainingType(TrainingType.LONG);
-        training.setDateTime(LocalDate.of(2025, 1, 4));
+        training.setDate(LocalDate.of(2025, 1, 4));
         training.setComment("Easy run 10.01.2025");
 
-        Segment segment1 = new Segment();
+        CompletedSegment segment1 = new CompletedSegment();
         segment1.setName("Warm-up");
-        segment1.setDuration(600L);
-        segment1.setDistance(1000L);
+        segment1.setDurationInSeconds(600L);
+        segment1.setDistanceInMeters(1000L);
         segment1.setAverageHeartRate(100L);
         segment1.setTraining(training);
 
-        Segment segment2 = new Segment();
+        CompletedSegment segment2 = new CompletedSegment();
         segment2.setName("Main part");
-        segment2.setDuration(1800L);
-        segment2.setDistance(3000L);
+        segment2.setDurationInSeconds(1800L);
+        segment2.setDistanceInMeters(3000L);
         segment2.setAverageHeartRate(120L);
         segment2.setTraining(training);
 
-        Segment segment3 = new Segment();
+        CompletedSegment segment3 = new CompletedSegment();
         segment3.setName("Cool-down");
-        segment3.setDuration(600L);
-        segment3.setDistance(1000L);
+        segment3.setDurationInSeconds(600L);
+        segment3.setDistanceInMeters(1000L);
         segment3.setAverageHeartRate(100L);
         segment3.setTraining(training);
 
@@ -168,79 +171,79 @@ public class BeginDataLoader implements CommandLineRunner {
     }
 
     private Training createTraining4() {
-        Training training = new Training();
+        CompletedTraining training = new CompletedTraining();
         training.setTrainingType(TrainingType.INTERVAL);
-        training.setDateTime(LocalDate.of(2025, 1, 5));
+        training.setDate(LocalDate.of(2025, 1, 5));
         training.setComment("Interval training 10.01.2025");
 
-        Segment segment1 = new Segment();
+        CompletedSegment segment1 = new CompletedSegment();
         segment1.setName("Warm-up");
-        segment1.setDuration(600L);
-        segment1.setDistance(1000L);
+        segment1.setDurationInSeconds(600L);
+        segment1.setDistanceInMeters(1000L);
         segment1.setAverageHeartRate(100L);
         segment1.setTraining(training);
 
         //Interwały - 10 minut rozgrzewki, 8 x 1 min sprintu z 1 min przerwy na trucht, 10 minut schłodzenia
-        Segment segment2 = new Segment();
+        CompletedSegment segment2 = new CompletedSegment();
         segment2.setName("Sprint 1");
-        segment2.setDuration(60L);
-        segment2.setDistance(400L);
+        segment2.setDurationInSeconds(60L);
+        segment2.setDistanceInMeters(400L);
         segment2.setAverageHeartRate(null);
         segment2.setTraining(training);
 
-        Segment segment3 = new Segment();
+        CompletedSegment segment3 = new CompletedSegment();
         segment3.setName("Trucht 1");
-        segment3.setDuration(60L);
-        segment3.setDistance(200L);
+        segment3.setDurationInSeconds(60L);
+        segment3.setDistanceInMeters(200L);
         segment3.setAverageHeartRate(null);
         segment3.setTraining(training);
 
-        Segment segment4 = new Segment();
+        CompletedSegment segment4 = new CompletedSegment();
         segment4.setName("Sprint 2");
-        segment4.setDuration(60L);
-        segment4.setDistance(400L);
+        segment4.setDurationInSeconds(60L);
+        segment4.setDistanceInMeters(400L);
         segment4.setAverageHeartRate(null);
         segment4.setTraining(training);
 
-        Segment segment5 = new Segment();
+        CompletedSegment segment5 = new CompletedSegment();
         segment5.setName("Trucht 2");
-        segment5.setDuration(60L);
-        segment5.setDistance(200L);
+        segment5.setDurationInSeconds(60L);
+        segment5.setDistanceInMeters(200L);
         segment5.setAverageHeartRate(null);
         segment5.setTraining(training);
 
-        Segment segment6 = new Segment();
+        CompletedSegment segment6 = new CompletedSegment();
         segment6.setName("Sprint 3");
-        segment6.setDuration(60L);
-        segment6.setDistance(400L);
+        segment6.setDurationInSeconds(60L);
+        segment6.setDistanceInMeters(400L);
         segment6.setAverageHeartRate(null);
         segment6.setTraining(training);
 
-        Segment segment7 = new Segment();
+        CompletedSegment segment7 = new CompletedSegment();
         segment7.setName("Trucht 3");
-        segment7.setDuration(60L);
-        segment7.setDistance(200L);
+        segment7.setDurationInSeconds(60L);
+        segment7.setDistanceInMeters(200L);
         segment7.setAverageHeartRate(null);
         segment7.setTraining(training);
 
-        Segment segment8 = new Segment();
+        CompletedSegment segment8 = new CompletedSegment();
         segment8.setName("Sprint 4");
-        segment8.setDuration(60L);
-        segment8.setDistance(400L);
+        segment8.setDurationInSeconds(60L);
+        segment8.setDistanceInMeters(400L);
         segment8.setAverageHeartRate(null);
         segment8.setTraining(training);
 
-        Segment segment9 = new Segment();
+        CompletedSegment segment9 = new CompletedSegment();
         segment9.setName("Trucht 4");
-        segment9.setDuration(60L);
-        segment9.setDistance(200L);
+        segment9.setDurationInSeconds(60L);
+        segment9.setDistanceInMeters(200L);
         segment9.setAverageHeartRate(null);
         segment9.setTraining(training);
 
-        Segment segment10 = new Segment();
+        CompletedSegment segment10 = new CompletedSegment();
         segment10.setName("Cool-down");
-        segment10.setDuration(600L);
-        segment10.setDistance(1000L);
+        segment10.setDurationInSeconds(600L);
+        segment10.setDistanceInMeters(1000L);
         segment10.setAverageHeartRate(100L);
         segment10.setTraining(training);
 
@@ -250,30 +253,30 @@ public class BeginDataLoader implements CommandLineRunner {
     }
 
     private Training createTraining5() {
-        Training training = new Training();
+        CompletedTraining training = new CompletedTraining();
         training.setTrainingType(TrainingType.THRESHOLD);
-        training.setDateTime(LocalDate.of(2025, 1, 6));
+        training.setDate(LocalDate.of(2025, 1, 6));
         training.setComment("Threshold training 10.01.2025");
 
-        Segment segment1 = new Segment();
+        CompletedSegment segment1 = new CompletedSegment();
         segment1.setName("Warm-up");
-        segment1.setDuration(600L);
-        segment1.setDistance(1000L);
+        segment1.setDurationInSeconds(600L);
+        segment1.setDistanceInMeters(1000L);
         segment1.setAverageHeartRate(100L);
         segment1.setTraining(training);
 
         //Progowe - 10 minut rozgrzewki, 20 minut biegu w tempie progowym, 10 minut schłodzenia
-        Segment segment2 = new Segment();
+        CompletedSegment segment2 = new CompletedSegment();
         segment2.setName("Main part");
-        segment2.setDuration(1200L);
-        segment2.setDistance(2000L);
+        segment2.setDurationInSeconds(1200L);
+        segment2.setDistanceInMeters(2000L);
         segment2.setAverageHeartRate(150L);
         segment2.setTraining(training);
 
-        Segment segment3 = new Segment();
+        CompletedSegment segment3 = new CompletedSegment();
         segment3.setName("Cool-down");
-        segment3.setDuration(600L);
-        segment3.setDistance(1000L);
+        segment3.setDurationInSeconds(600L);
+        segment3.setDistanceInMeters(1000L);
         segment3.setAverageHeartRate(100L);
         segment3.setTraining(training);
 

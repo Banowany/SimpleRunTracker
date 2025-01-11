@@ -1,9 +1,11 @@
-package com.example.simpleruntrackerbackend;
+package com.example.simpleruntrackerbackend.entities.segments;
 
+import com.example.simpleruntrackerbackend.entities.trainings.Training;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Segment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +17,6 @@ public class Segment {
     @JoinColumn(name = "training_id", nullable = false)
     @JsonIgnore
     private Training training;
-
-    private long duration; //in seconds
-
-    private long distance; //in meters
-
-    private Long averageHeartRate;//optional
-
-    public Segment() {
-    }
 
     public int getId() {
         return id;
@@ -47,29 +40,5 @@ public class Segment {
 
     public void setTraining(Training training) {
         this.training = training;
-    }
-
-    public long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
-    public long getDistance() {
-        return distance;
-    }
-
-    public void setDistance(long distance) {
-        this.distance = distance;
-    }
-
-    public Long getAverageHeartRate() {
-        return averageHeartRate;
-    }
-
-    public void setAverageHeartRate(Long averageHeartRate) {
-        this.averageHeartRate = averageHeartRate;
     }
 }
