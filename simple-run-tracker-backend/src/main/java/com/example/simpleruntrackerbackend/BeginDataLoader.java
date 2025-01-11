@@ -3,6 +3,7 @@ package com.example.simpleruntrackerbackend;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class BeginDataLoader implements CommandLineRunner {
     private Training createTraining1() {
         Training training = new Training();
         training.setTrainingType(TrainingType.LONG);
-        training.setDateTime(LocalDateTime.of(2025, 1, 1, 0, 0));
+        training.setDateTime(LocalDate.of(2025, 1, 1));
         training.setComment("First training in 2025");
 
         Segment segment1 = new Segment();
@@ -48,7 +49,7 @@ public class BeginDataLoader implements CommandLineRunner {
     private Training createTraining2() {
         Training training = new Training();
         training.setTrainingType(TrainingType.SPEED);
-        training.setDateTime(LocalDateTime.of(2025, 1, 3, 0, 0));
+        training.setDateTime(LocalDate.of(2025, 1, 3));
         training.setComment("Second training in 2025 - speed training");
 
         Segment segment1 = new Segment();
@@ -137,7 +138,7 @@ public class BeginDataLoader implements CommandLineRunner {
     private Training createTraining3() {
         Training training = new Training();
         training.setTrainingType(TrainingType.LONG);
-        training.setDateTime(LocalDateTime.of(2025, 1, 4, 0, 0));
+        training.setDateTime(LocalDate.of(2025, 1, 4));
         training.setComment("Easy run 10.01.2025");
 
         Segment segment1 = new Segment();
@@ -169,7 +170,7 @@ public class BeginDataLoader implements CommandLineRunner {
     private Training createTraining4() {
         Training training = new Training();
         training.setTrainingType(TrainingType.INTERVAL);
-        training.setDateTime(LocalDateTime.of(2025, 1, 5, 0, 0));
+        training.setDateTime(LocalDate.of(2025, 1, 5));
         training.setComment("Interval training 10.01.2025");
 
         Segment segment1 = new Segment();
@@ -251,7 +252,7 @@ public class BeginDataLoader implements CommandLineRunner {
     private Training createTraining5() {
         Training training = new Training();
         training.setTrainingType(TrainingType.THRESHOLD);
-        training.setDateTime(LocalDateTime.of(2025, 1, 6, 0, 0));
+        training.setDateTime(LocalDate.of(2025, 1, 6));
         training.setComment("Threshold training 10.01.2025");
 
         Segment segment1 = new Segment();
@@ -287,6 +288,6 @@ public class BeginDataLoader implements CommandLineRunner {
         trainingRepository.save(createTraining2());
         trainingRepository.save(createTraining3());
         trainingRepository.save(createTraining4());
-        trainingRepository.save(createTraining5()); 
+        trainingRepository.save(createTraining5());
     }
 }

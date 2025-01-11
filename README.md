@@ -4,7 +4,7 @@
 [x] Create Training entity
 [x] Creating basic endpoints for enity
 [x] Fill with example data on the begining
-[ ] Create endpoint which gets summarry
+[x] Create endpoint which gets summarry
 [ ] Creating planned traing (Set goal: time or distance) - single table inheritance
 [ ] Make endpoints for planned training
 [ ] Switch to normal database

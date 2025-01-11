@@ -16,11 +16,11 @@ public class Segment {
     @JsonIgnore
     private Training training;
 
-    private Long duration; //in seconds
+    private long duration; //in seconds
 
-    private Long distance; //in meters
+    private long distance; //in meters
 
-    private Long averageHeartRate;
+    private Long averageHeartRate;//optional
 
     public Segment() {
     }
@@ -49,19 +49,19 @@ public class Segment {
         this.training = training;
     }
 
-    public Long getDuration() {
+    public long getDuration() {
         return duration;
     }
 
-    public void setDuration(Long duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
-    public Long getDistance() {
+    public long getDistance() {
         return distance;
     }
 
-    public void setDistance(Long distance) {
+    public void setDistance(long distance) {
         this.distance = distance;
     }
 

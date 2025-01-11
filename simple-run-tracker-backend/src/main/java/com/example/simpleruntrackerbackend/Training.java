@@ -3,6 +3,7 @@ package com.example.simpleruntrackerbackend;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Training {
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Segment> segments = new ArrayList<>();
 
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
     private String comment;
 
@@ -49,12 +50,12 @@ public class Training {
         this.segments = segments;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDateTime(LocalDate date) {
+        this.date = date;
     }
 
     public String getComment() {
