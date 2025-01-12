@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/trainings")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CompletedTrainingController {
     private final CompletedTrainingService completedTrainingService;
 
