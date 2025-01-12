@@ -11,7 +11,7 @@
 [ ] Remove BeginDataLoader and save data in normal database
 
 # TODO frontend
-[ ] Create empty project for frontend in react
+[x] Create empty project for frontend in react
 [ ] Create DTO for completed traing instances
 [ ] Create Service for get and post training instances
 [ ] Create page which list all of trainings as list
