@@ -1,7 +1,11 @@
 package com.example.simpleruntrackerbackend;
 
 import com.example.simpleruntrackerbackend.entities.segments.CompletedSegment;
+import com.example.simpleruntrackerbackend.entities.segments.PlannedDistanceSegment;
+import com.example.simpleruntrackerbackend.entities.segments.PlannedSegment;
+import com.example.simpleruntrackerbackend.entities.segments.PlannedTimeSegment;
 import com.example.simpleruntrackerbackend.entities.trainings.CompletedTraining;
+import com.example.simpleruntrackerbackend.entities.trainings.PlannedTraining;
 import com.example.simpleruntrackerbackend.entities.trainings.Training;
 import com.example.simpleruntrackerbackend.repositories.TrainingRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -285,12 +289,40 @@ public class BeginDataLoader implements CommandLineRunner {
         return training;
     }
 
+    private PlannedTraining createPlannedTraining() {
+        PlannedTraining training = new PlannedTraining();
+        training.setTrainingType(TrainingType.LONG);
+        training.setDate(LocalDate.of(2025, 1, 1));
+        training.setComment("First training in 2025");
+
+        PlannedTimeSegment segment1 = new PlannedTimeSegment();
+        segment1.setName("Warm-up");
+        segment1.setPlannedDurationInSeconds(600L);
+        segment1.setTraining(training);
+
+        PlannedDistanceSegment segment2 = new PlannedDistanceSegment();
+        segment2.setName("Main part");
+        segment2.setPlannedDistanceInMeters(3000L);
+        segment2.setPlannedPaceInSecondsPerKm(360);
+        segment2.setTraining(training);
+
+        PlannedDistanceSegment segment3 = new PlannedDistanceSegment();
+        segment3.setName("Cool-down");
+        segment3.setPlannedDistanceInMeters(1000L);
+        segment3.setTraining(training);
+
+        training.setSegments(List.of(segment1, segment2, segment3));
+
+        return training;
+    }
+
     @Override
     public void run(String... args) throws Exception {
-        trainingRepository.save(createTraining1());
-        trainingRepository.save(createTraining2());
-        trainingRepository.save(createTraining3());
-        trainingRepository.save(createTraining4());
-        trainingRepository.save(createTraining5());
+//        trainingRepository.save(createTraining1());
+//        trainingRepository.save(createTraining2());
+//        trainingRepository.save(createTraining3());
+//        trainingRepository.save(createTraining4());
+//        trainingRepository.save(createTraining5());
+        trainingRepository.save(createPlannedTraining());
     }
 }
