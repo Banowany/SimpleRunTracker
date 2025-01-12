@@ -1,4 +1,4 @@
-# TODO
+# TODO backend
 [x] Make empty project for backend
 [x] Set for H2 Database
 [x] Create Training entity
@@ -9,3 +9,19 @@
 [x] Make endpoints for planned training
 [x] Switch to normal database
 [ ] Remove BeginDataLoader and save data in normal database
+
+# TODO frontend
+[ ] Create empty project for frontend in react
+[ ] Create DTO for completed traing instances
+[ ] Create Service for get and post training instances
+[ ] Create page which list all of trainings as list
+[ ] Create page with calendar view
+[ ] Add training view into calendar
+[ ] Add button and modal for creaing new training
+[ ] Refreshing the calendar with new traing
+[ ] Create page with data summarry
+[ ] Create dto for planned traing
+[ ] Add to Service option of get and post planned traing
+[ ] Add view for planned traing in calendar
+[ ] Add button for planned training
+[ ] Creating notification for nearest traing day before
