@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import TrainingService from "./services/trainingService.ts";
+import ApiService from "./services/apiService.ts";
 
 function TrainingList() {
     const [data, setData] = useState([])
 
-    const trainingService = new TrainingService("http://localhost:8080")
+    const trainingService = new ApiService("http://localhost:8080")
 
     useEffect(() => {
         trainingService.getTrainings().then(response => {

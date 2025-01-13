@@ -1,29 +1,30 @@
-// Importy wymagane do działania aplikacji
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import ApiService from "./services/apiService.ts";
+import {useEffect, useState} from "react";
+import TrainingService from "./services/trainingService.ts";
 
-// Lokalizacja za pomocą biblioteki moment
 const localizer = momentLocalizer(moment);
 
-// Przykładowe wydarzenia
-const events = [
-    {
-        title: "Spotkanie zespołu",
-        start: new Date(2025, 0, 15, 10, 0), // 15 stycznia 2025, 10:00
-        end: new Date(2025, 0, 15, 11, 0), // 15 stycznia 2025, 11:00
-    },
-    {
-        title: "Prezentacja projektu",
-        start: new Date(2025, 0, 16, 14, 0), // 16 stycznia 2025, 14:00
-        end: new Date(2025, 0, 16, 15, 30), // 16 stycznia 2025, 15:30
-    },
-];
+const apiService = new ApiService("http://localhost:8080");
+const trainingService = new TrainingService()
 
-// Główna aplikacja
 const MyCalendar = () => {
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        apiService.getTrainings().then(response => {
+            console.log(response.data);
+            const tmp = trainingService.mapToCalendarEvents(response.data)
+            console.log(tmp)
+            setEvents(tmp);
+        });
+    }, []);
+
     return (
-        <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
+        // <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
+        <div>
             <h1>Mój Kalendarz</h1>
             <Calendar
                 localizer={localizer}
