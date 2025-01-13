@@ -4,6 +4,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import ApiService from "./services/apiService.ts";
 import {useEffect, useState} from "react";
 import TrainingService from "./services/trainingService.ts";
+import TrainingModal from "./TrainingModal.jsx";
+import {Button} from "react-bootstrap";
 
 const localizer = momentLocalizer(moment);
 
@@ -12,6 +14,8 @@ const trainingService = new TrainingService()
 
 const MyCalendar = () => {
     const [events, setEvents] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedTraining, setSelectedTraining] = useState(null);
 
     useEffect(() => {
         apiService.getTrainings().then(response => {
@@ -21,6 +25,13 @@ const MyCalendar = () => {
             setEvents(tmp);
         });
     }, []);
+
+    const handleEventClick = (event) => {
+        setSelectedTraining(event.training);
+        setShowModal(true);
+    };
+
+    const handleClose = () => setShowModal(false);
 
     return (
         // <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
@@ -32,7 +43,14 @@ const MyCalendar = () => {
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: "80vh" }}
+                onSelectEvent={handleEventClick}
             />
+            {selectedTraining && (
+            <TrainingModal
+                show={showModal}
+                handleClose={handleClose}
+                training={selectedTraining}
+            />)}
         </div>
     );
 };
