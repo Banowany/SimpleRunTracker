@@ -13,8 +13,8 @@
 # TODO frontend
 [x] Create empty project for frontend in react
 [x] Create DTO for completed traing instances
-[ ] Create Service for get and post training instances
-[ ] Create page which list all of trainings as list
+[x] Create Service for get and post training instances
+[x] Create page which list all of trainings as list
 [ ] Create page with calendar view
 [ ] Add training view into calendar
 [ ] Add button and modal for creaing new training
