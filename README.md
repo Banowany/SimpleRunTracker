@@ -25,6 +25,6 @@
 [x] Create dto for planned traing
 [x] Add to Service option of get and post planned traing
 [x] Add view for planned traing in calendar
-[ ] Add button for planned training
+[x] Add button for planned training
 [ ] Creating notification for nearest traing day before
 [ ] Add verification of data

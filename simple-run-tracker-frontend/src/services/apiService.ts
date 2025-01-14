@@ -32,6 +32,10 @@ class ApiService {
     getPlannedTrainings() : Promise<PlannedTrainingDTO[]> {
         return this.client.get("/api/planned-trainings")
     }
+
+    addPlannedTraining(plannedTraining: PlannedTrainingDTO) : Promise<PlannedTrainingDTO> {
+        return this.client.post("/api/planned-trainings", plannedTraining)
+    }
 }
 
 export default ApiService;

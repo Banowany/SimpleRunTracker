@@ -10,6 +10,7 @@ import TrainingModal from "./TrainingModal.jsx";
 import PlannedTrainingModal from "./PlannedTrainingModal.jsx";
 import { Button } from "react-bootstrap";
 import AddTrainingModal from "./AddTrainingModal.jsx";
+import AddPlannedTrainingModal from "./AddPlannedTrainingModal.jsx";
 
 const localizer = momentLocalizer(moment);
 
@@ -23,13 +24,13 @@ const MyCalendar = () => {
     const [showPlannedModal, setShowPlannedModal] = useState(false);
     const [selectedTraining, setSelectedTraining] = useState(null);
     const [showAddModal, setShowAddModal] = useState(false);
+    const [showAddPlannedModal, setShowAddPlannedModal] = useState(false);
 
     useEffect(() => {
         Promise.all([apiService.getTrainings(), apiService.getPlannedTrainings()])
             .then(([trainingsResponse, plannedTrainingsResponse]) => {
                 const trainingEvents = trainingService.mapToCalendarEvents(trainingsResponse.data);
                 const plannedTrainingEvents = plannedTrainingService.mapToCalendarEvents(plannedTrainingsResponse.data);
-                console.log(plannedTrainingEvents)
                 setEvents([...trainingEvents, ...plannedTrainingEvents]);
             })
             .catch(error => {
@@ -54,9 +55,19 @@ const MyCalendar = () => {
     const handleAddClose = () => setShowAddModal(false);
     const handleAddOpen = () => setShowAddModal(true);
 
+    const handleAddPlannedClose = () => setShowAddPlannedModal(false);
+    const handleAddPlannedOpen = () => setShowAddPlannedModal(true);
+
     const handleSaveTraining = (newTraining) => {
         apiService.addTraining(newTraining).then(response => {
             const newEvent = trainingService.mapToCalendarEvent(response.data);
+            setEvents([...events, newEvent]);
+        });
+    };
+
+    const handleSavePlannedTraining = (newPlannedTraining) => {
+        apiService.addPlannedTraining(newPlannedTraining).then(response => {
+            const newEvent = plannedTrainingService.mapToCalendarEvent(response.data);
             setEvents([...events, newEvent]);
         });
     };
@@ -70,6 +81,7 @@ const MyCalendar = () => {
         <div>
             <h1>Mój Kalendarz</h1>
             <Button onClick={handleAddOpen}>Add Training</Button>
+            <Button onClick={handleAddPlannedOpen}>Add Planned Training</Button>
             <Calendar
                 localizer={localizer}
                 events={events}
@@ -97,6 +109,11 @@ const MyCalendar = () => {
                 show={showAddModal}
                 handleClose={handleAddClose}
                 handleSave={handleSaveTraining}
+            />
+            <AddPlannedTrainingModal
+                show={showAddPlannedModal}
+                handleClose={handleAddPlannedClose}
+                handleSave={handleSavePlannedTraining}
             />
         </div>
     );
