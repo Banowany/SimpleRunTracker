@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from "axios";
 import {TrainingDTO} from "../dtos/training.dto";
 import {TrainingSummaryDto} from "../dtos/trainingSummary.dto";
+import {PlannedTrainingDTO} from "../dtos/plannedTraining.dto";
 
 class ApiService {
     private client: AxiosInstance;
@@ -26,6 +27,10 @@ class ApiService {
                 endDate: to
             }
         })
+    }
+
+    getPlannedTrainings() : Promise<PlannedTrainingDTO[]> {
+        return this.client.get("/api/planned-trainings")
     }
 }
 

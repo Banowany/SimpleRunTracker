@@ -7,11 +7,14 @@ import TrainingService from "./services/trainingService.ts";
 import TrainingModal from "./TrainingModal.jsx";
 import {Button} from "react-bootstrap";
 import AddTrainingModal from "./AddTrainingModal.jsx";
+import PlannedTrainingService from "./services/plannedTrainingService.ts";
+// import plannedTrainingService from "./services/plannedTrainingService.js";
 
 const localizer = momentLocalizer(moment);
 
 const apiService = new ApiService("http://localhost:8080");
 const trainingService = new TrainingService()
+const plannedTrainingService = new PlannedTrainingService()
 
 const MyCalendar = () => {
     const [events, setEvents] = useState([]);
@@ -20,12 +23,12 @@ const MyCalendar = () => {
     const [showAddModal, setShowAddModal] = useState(false);
 
     useEffect(() => {
-        apiService.getTrainings().then(response => {
-            console.log(response.data);
-            const tmp = trainingService.mapToCalendarEvents(response.data)
-            console.log(tmp)
-            setEvents(tmp);
-        });
+        Promise.all([apiService.getTrainings(), apiService.getPlannedTrainings()])
+            .then(([trainingsResponse, plannedTrainingsResponse]) => {
+                const trainingEvents = trainingService.mapToCalendarEvents(trainingsResponse.data);
+                const plannedTrainingEvents = plannedTrainingService.mapToCalendarEvents(plannedTrainingsResponse.data);
+                setEvents([...trainingEvents, ...plannedTrainingEvents]);
+            })
     }, []);
 
     const handleEventClick = (event) => {
@@ -45,6 +48,11 @@ const MyCalendar = () => {
         });
     };
 
+    const eventPropGetter = (event) => {
+        const backgroundColor = event.color || 'blue'; // Default color if no color is specified
+        return { style: { backgroundColor } };
+    };
+
     return (
         // <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
         <div>
@@ -57,6 +65,7 @@ const MyCalendar = () => {
                 endAccessor="end"
                 style={{ height: "80vh" }}
                 onSelectEvent={handleEventClick}
+                eventPropGetter={eventPropGetter}
             />
             {selectedTraining && (
             <TrainingModal

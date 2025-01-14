@@ -6,7 +6,8 @@ class TrainingService {
             title: training.trainingType,
             start: training.date,
             end: training.date,
-            training: training
+            training: training,
+            color: 'green'
         }))
     }
 
@@ -15,7 +16,8 @@ class TrainingService {
             title: training.trainingType,
             start: training.date,
             end: training.date,
-            training: training
+            training: training,
+            color: 'green'
         }
     }
 }

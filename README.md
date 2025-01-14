@@ -22,9 +22,9 @@
 [x] Clear data from adding modal after leave or save
 [x] Create page with data summarry
 [x] Add rooting
-[ ] Create dto for planned traing
-[ ] Add to Service option of get and post planned traing
-[ ] Add view for planned traing in calendar
+[x] Create dto for planned traing
+[x] Add to Service option of get and post planned traing
+[x] Add view for planned traing in calendar
 [ ] Add button for planned training
 [ ] Creating notification for nearest traing day before
 [ ] Add verification of data
