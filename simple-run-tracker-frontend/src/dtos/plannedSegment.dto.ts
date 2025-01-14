@@ -1,5 +1,5 @@
 export interface PlannedSegmentDTO {
-    id: number;
+    // id: number;
     name: string;
     plannedPaceInSecondsPerKm: number;
     plannedDurationInSeconds?: number;

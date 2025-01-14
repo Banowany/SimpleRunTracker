@@ -18,14 +18,16 @@ const PlannedTrainingModal = ({ show, handleClose, training }) => {
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Name</th>
                         <th>Planned Pace (sec/km)</th>
                         <th>Planned Distance or Time</th>
                     </tr>
                     </thead>
                     <tbody>
                     {training.segments.map((segment, index) => (
-                        <tr key={segment.id}>
+                        <tr key={index + 1}>
                             <td>{index + 1}</td>
+                            <td>{segment.name}</td>
                             <td>{segment.plannedPaceInSecondsPerKm}</td>
                             <td>
                                 {segment.planned_segment_type === 'time' && `${segment.plannedDurationInSeconds} sec`}

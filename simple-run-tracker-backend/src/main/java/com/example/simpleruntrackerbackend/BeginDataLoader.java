@@ -323,6 +323,6 @@ public class BeginDataLoader implements CommandLineRunner {
 //        trainingRepository.save(createTraining3());
 //        trainingRepository.save(createTraining4());
 //        trainingRepository.save(createTraining5());
-        trainingRepository.save(createPlannedTraining());
+//        trainingRepository.save(createPlannedTraining());
     }
 }

@@ -1,5 +1,6 @@
 package com.example.simpleruntrackerbackend.controllers;
 
+import com.example.simpleruntrackerbackend.dtos.CompletedTrainingDTO;
 import com.example.simpleruntrackerbackend.entities.trainings.CompletedTraining;
 import com.example.simpleruntrackerbackend.entities.trainings.Training;
 import com.example.simpleruntrackerbackend.services.CompletedTrainingService;
@@ -21,20 +22,14 @@ public class CompletedTrainingController {
     }
 
     @PostMapping
-    public ResponseEntity<Training> createCompletedTraining(@RequestBody CompletedTraining training) {
-        Training savedTraining = completedTrainingService.createCompletedTraining(training);
+    public ResponseEntity<CompletedTrainingDTO> createTraining(@RequestBody CompletedTrainingDTO completedTrainingDTO) {
+        CompletedTrainingDTO savedTraining = completedTrainingService.createCompletedTraining(completedTrainingDTO);
         return ResponseEntity.ok(savedTraining);
     }
 
     @GetMapping
-    public List<CompletedTraining> getAllCompletedTrainings() {
-        return completedTrainingService.getAllCompletedTrainings();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CompletedTraining> getTrainingById(@PathVariable Long id) {
-        return completedTrainingService.getCompletedTrainingById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<List<CompletedTrainingDTO>> getTrainings() {
+        List<CompletedTrainingDTO> trainings = completedTrainingService.getAllCompletedTrainings();
+        return ResponseEntity.ok(trainings);
     }
 }

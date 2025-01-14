@@ -1,5 +1,6 @@
 package com.example.simpleruntrackerbackend.controllers;
 
+import com.example.simpleruntrackerbackend.dtos.PlannedTrainingDTO;
 import com.example.simpleruntrackerbackend.entities.trainings.PlannedTraining;
 import com.example.simpleruntrackerbackend.services.PlannedTrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,15 @@ public class PlannedTrainingController {
     }
 
     @PostMapping
-    public ResponseEntity<PlannedTraining> createPlannedTraining(
-            @RequestBody PlannedTraining plannedTraining
+    public ResponseEntity<PlannedTrainingDTO> createPlannedTraining(
+            @RequestBody PlannedTrainingDTO plannedTrainingDTO
     ) {
-        PlannedTraining savedTraining = plannedTrainingService.createPlannedTraining(plannedTraining);
+        PlannedTrainingDTO savedTraining = plannedTrainingService.createPlannedTraining(plannedTrainingDTO);
         return ResponseEntity.ok(savedTraining);
     }
 
     @GetMapping
-    public List<PlannedTraining> getAllPlannedTrainings() {
-        return plannedTrainingService.getAllPlannedTrainings();
+    public ResponseEntity<List<PlannedTrainingDTO>> getPlannedTrainings() {
+        return ResponseEntity.ok(plannedTrainingService.getAllPlannedTrainings());
     }
 }

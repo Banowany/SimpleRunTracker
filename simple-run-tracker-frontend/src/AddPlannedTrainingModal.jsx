@@ -5,7 +5,7 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
     const [trainingType, setTrainingType] = useState('LONG');
     const [date, setDate] = useState('');
     const [comment, setComment] = useState('');
-    const [segments, setSegments] = useState([{ plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
+    const [segments, setSegments] = useState([{ name: '', plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
     const [validated, setValidated] = useState(false);
     const formRef = useRef(null);
 
@@ -16,14 +16,14 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
     };
 
     const handleAddSegment = () => {
-        setSegments([...segments, { plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
+        setSegments([...segments, { name: '', plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
     };
 
     const resetForm = () => {
         setTrainingType('LONG');
         setDate('');
         setComment('');
-        setSegments([{ plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
+        setSegments([{ name: '', plannedPaceInSecondsPerKm: '', planned_segment_type: 'time', plannedValue: '' }]);
         setValidated(false);
     };
 
@@ -35,12 +35,14 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
             const convertedSegments = segments.map(segment => {
                 if (segment.planned_segment_type === 'time') {
                     return {
+                        name: segment.name,
                         plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm,
                         planned_segment_type: segment.planned_segment_type,
                         plannedDurationInSeconds: segment.plannedValue
                     };
                 } else {
                     return {
+                        name: segment.name,
                         plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm,
                         planned_segment_type: segment.planned_segment_type,
                         plannedDistanceInMeters: segment.plannedValue
@@ -113,6 +115,7 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Name</th>
                                 <th>Planned Pace (sec/km)</th>
                                 <th>Goal</th>
                                 <th>Value</th>
@@ -122,6 +125,16 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
                             {segments.map((segment, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
+                                    <td>
+                                        <Form.Control
+                                            type="text"
+                                            value={segment.name}
+                                            onChange={(e) => handleSegmentChange(index, 'name', e.target.value)} required
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                            Please provide a name.
+                                        </Form.Control.Feedback>
+                                    </td>
                                     <td>
                                         <Form.Control
                                             type="number"
