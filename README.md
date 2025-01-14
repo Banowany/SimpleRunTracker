@@ -21,7 +21,7 @@
 [x] Refreshing the calendar with new traing
 [x] Clear data from adding modal after leave or save
 [x] Create page with data summarry
-[ ] Add rooting
+[x] Add rooting
 [ ] Create dto for planned traing
 [ ] Add to Service option of get and post planned traing
 [ ] Add view for planned traing in calendar
