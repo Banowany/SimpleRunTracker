@@ -13,6 +13,10 @@ class ApiService {
     getTrainings() : Promise<TrainingDTO[]> {
         return this.client.get("/api/trainings")
     }
+
+    addTraining(training: TrainingDTO) : Promise<TrainingDTO> {
+        return this.client.post("/api/trainings", training)
+    }
 }
 
 export default ApiService;

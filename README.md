@@ -17,8 +17,9 @@
 [x] Create page which list all of trainings as list
 [x] Create page with calendar view
 [x] Add training view into calendar
-[ ] Add button and modal for creaing new training
-[ ] Refreshing the calendar with new traing
+[x] Add button and modal for creaing new training
+[x] Refreshing the calendar with new traing
+[ ] Clear data from adding modal after leave or save
 [ ] Create page with data summarry
 [ ] Create dto for planned traing
 [ ] Add to Service option of get and post planned traing

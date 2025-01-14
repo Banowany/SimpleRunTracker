@@ -9,6 +9,15 @@ class TrainingService {
             training: training
         }))
     }
+
+    mapToCalendarEvent(training: TrainingDTO) {
+        return {
+            title: training.trainingType,
+            start: training.date,
+            end: training.date,
+            training: training
+        }
+    }
 }
 
 export default TrainingService

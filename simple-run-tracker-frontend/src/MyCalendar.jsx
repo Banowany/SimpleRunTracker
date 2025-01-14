@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import TrainingService from "./services/trainingService.ts";
 import TrainingModal from "./TrainingModal.jsx";
 import {Button} from "react-bootstrap";
+import AddTrainingModal from "./AddTrainingModal.jsx";
 
 const localizer = momentLocalizer(moment);
 
@@ -16,6 +17,7 @@ const MyCalendar = () => {
     const [events, setEvents] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedTraining, setSelectedTraining] = useState(null);
+    const [showAddModal, setShowAddModal] = useState(false);
 
     useEffect(() => {
         apiService.getTrainings().then(response => {
@@ -33,10 +35,21 @@ const MyCalendar = () => {
 
     const handleClose = () => setShowModal(false);
 
+    const handleAddClose = () => setShowAddModal(false);
+    const handleAddOpen = () => setShowAddModal(true);
+
+    const handleSaveTraining = (newTraining) => {
+        apiService.addTraining(newTraining).then(response => {
+            const newEvent = trainingService.mapToCalendarEvent(response.data);
+            setEvents([...events, newEvent]);
+        });
+    };
+
     return (
         // <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
         <div>
             <h1>Mój Kalendarz</h1>
+            <Button onClick={handleAddOpen}>Add Training</Button>
             <Calendar
                 localizer={localizer}
                 events={events}
@@ -51,6 +64,11 @@ const MyCalendar = () => {
                 handleClose={handleClose}
                 training={selectedTraining}
             />)}
+            <AddTrainingModal
+                show={showAddModal}
+                handleClose={handleAddClose}
+                handleSave={handleSaveTraining}
+            />
         </div>
     );
 };

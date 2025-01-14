@@ -16,6 +16,10 @@ public class CompletedTrainingService {
     }
 
     public CompletedTraining createCompletedTraining(CompletedTraining completedTraining) {
+        for (var comSeg: completedTraining.getSegments()) {
+            comSeg.setTraining(completedTraining);
+        }
+
         return completedTrainingRepository.save(completedTraining);
     }
 
