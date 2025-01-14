@@ -20,9 +20,11 @@
 [x] Add button and modal for creaing new training
 [x] Refreshing the calendar with new traing
 [x] Clear data from adding modal after leave or save
-[ ] Create page with data summarry
+[x] Create page with data summarry
+[ ] Add rooting
 [ ] Create dto for planned traing
 [ ] Add to Service option of get and post planned traing
 [ ] Add view for planned traing in calendar
 [ ] Add button for planned training
 [ ] Creating notification for nearest traing day before
+[ ] Add verification of data
