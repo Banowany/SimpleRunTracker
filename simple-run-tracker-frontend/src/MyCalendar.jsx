@@ -8,9 +8,9 @@ import TrainingService from "./services/trainingService.ts";
 import PlannedTrainingService from "./services/plannedTrainingService.ts";
 import TrainingModal from "./TrainingModal.jsx";
 import PlannedTrainingModal from "./PlannedTrainingModal.jsx";
-import { Button } from "react-bootstrap";
 import AddTrainingModal from "./AddTrainingModal.jsx";
 import AddPlannedTrainingModal from "./AddPlannedTrainingModal.jsx";
+import CustomToolbar from "./CustomToolbar.jsx";
 
 const localizer = momentLocalizer(moment);
 
@@ -79,9 +79,6 @@ const MyCalendar = () => {
 
     return (
         <div>
-            <h1>Mój Kalendarz</h1>
-            <Button onClick={handleAddOpen}>Add Training</Button>
-            <Button onClick={handleAddPlannedOpen}>Add Planned Training</Button>
             <Calendar
                 localizer={localizer}
                 events={events}
@@ -90,6 +87,15 @@ const MyCalendar = () => {
                 style={{ height: "80vh" }}
                 onSelectEvent={handleEventClick}
                 eventPropGetter={eventPropGetter}
+                components={{
+                    toolbar: (props) => (
+                        <CustomToolbar
+                            {...props}
+                            onAddTraining={handleAddOpen}
+                            onAddPlannedTraining={handleAddPlannedOpen}
+                        />
+                    )
+                }}
             />
             {selectedTraining && (
                 <>
