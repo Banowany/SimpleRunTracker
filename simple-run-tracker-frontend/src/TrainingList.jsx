@@ -17,10 +17,12 @@ const TrainingList = forwardRef(({ trainings, plannedTrainings, onDetailsClick }
 
     const groupedTrainings = allTrainings.reduce((acc, training) => {
         const date = moment(training.date).format('YYYY-MM-DD');
-        if (!acc[date]) {
-            acc[date] = [];
+        if (moment(date, 'YYYY-MM-DD', true).isValid()) {
+            if (!acc[date]) {
+                acc[date] = [];
+            }
+            acc[date].push(training);
         }
-        acc[date].push(training);
         return acc;
     }, {});
 
@@ -35,7 +37,7 @@ const TrainingList = forwardRef(({ trainings, plannedTrainings, onDetailsClick }
 
     return (
         <div>
-            {Object.keys(groupedTrainings).map(date => (
+            {Object.keys(groupedTrainings).sort((a, b) => b.localeCompare(a)).map(date => (
                 <Card key={date} id={date} className="mt-3">
                     <Card.Header>{date}</Card.Header>
                     <ListGroup variant="flush">
