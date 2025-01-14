@@ -4,8 +4,8 @@ class TrainingService {
     mapToCalendarEvents(trainings: TrainingDTO[]) {
         return trainings.map(training => ({
             title: training.trainingType,
-            start: training.date,
-            end: training.date,
+            start: new Date(training.date),
+            end: new Date(training.date),
             training: training,
             color: 'green',
             isPlanned: false
@@ -15,8 +15,8 @@ class TrainingService {
     mapToCalendarEvent(training: TrainingDTO) {
         return {
             title: training.trainingType,
-            start: training.date,
-            end: training.date,
+            start: new Date(training.date),
+            end: new Date(training.date),
             training: training,
             color: 'green',
             isPlanned: false

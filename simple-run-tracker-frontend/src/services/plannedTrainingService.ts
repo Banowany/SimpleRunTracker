@@ -4,8 +4,8 @@ class PlannedTrainingService {
     mapToCalendarEvent(plannedTraining: PlannedTrainingDTO) {
         return {
             title: plannedTraining.trainingType,
-            start: plannedTraining.date,
-            end: plannedTraining.date,
+            start: new Date(plannedTraining.date),
+            end: new Date(plannedTraining.date),
             training: plannedTraining,
             //set purple color for planned training
             // style: { backgroundColor: 'purple' }

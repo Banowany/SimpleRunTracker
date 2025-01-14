@@ -26,5 +26,6 @@
 [x] Add to Service option of get and post planned traing
 [x] Add view for planned traing in calendar
 [x] Add button for planned training
+[ ] Add editing possibility
 [ ] Creating notification for nearest traing day before
 [ ] Add verification of data
