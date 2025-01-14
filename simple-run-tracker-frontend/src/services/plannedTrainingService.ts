@@ -9,7 +9,8 @@ class PlannedTrainingService {
             training: plannedTraining,
             //set purple color for planned training
             // style: { backgroundColor: 'purple' }
-            color: 'purple'
+            color: 'purple',
+            isPlanned: true
         }
     }
 

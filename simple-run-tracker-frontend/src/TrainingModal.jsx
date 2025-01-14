@@ -12,14 +12,14 @@ const TrainingModal = ({ show, handleClose, training }) => {
                 <p><strong>Date:</strong> {training.date}</p>
                 <p><strong>Comment:</strong> {training.comment}</p>
                 <p><strong>Segments:</strong></p>
-                <Table>
+                <Table striped bordered hover>
                     <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Duration</th>
                         <th>Distance</th>
-                        <th>Avg. Pace</th>
+                        <th>Avg. Pulse</th>
                     </tr>
                     </thead>
                     <tbody>

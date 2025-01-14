@@ -2,7 +2,7 @@ export interface PlannedSegmentDTO {
     id: number;
     name: string;
     plannedPaceInSecondsPerKm: number;
-    durationInSeconds?: number;
-    distanceInMeters?: number;
+    plannedDurationInSeconds?: number;
+    plannedDistanceInMeters?: number;
     planned_segment_type: string;
 }

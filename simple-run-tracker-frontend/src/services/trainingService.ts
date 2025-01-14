@@ -7,7 +7,8 @@ class TrainingService {
             start: training.date,
             end: training.date,
             training: training,
-            color: 'green'
+            color: 'green',
+            isPlanned: false
         }))
     }
 
@@ -17,7 +18,8 @@ class TrainingService {
             start: training.date,
             end: training.date,
             training: training,
-            color: 'green'
+            color: 'green',
+            isPlanned: false
         }
     }
 }

@@ -1,24 +1,26 @@
+// src/MyCalendar.jsx
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import ApiService from "./services/apiService.ts";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import TrainingService from "./services/trainingService.ts";
-import TrainingModal from "./TrainingModal.jsx";
-import {Button} from "react-bootstrap";
-import AddTrainingModal from "./AddTrainingModal.jsx";
 import PlannedTrainingService from "./services/plannedTrainingService.ts";
-// import plannedTrainingService from "./services/plannedTrainingService.js";
+import TrainingModal from "./TrainingModal.jsx";
+import PlannedTrainingModal from "./PlannedTrainingModal.jsx";
+import { Button } from "react-bootstrap";
+import AddTrainingModal from "./AddTrainingModal.jsx";
 
 const localizer = momentLocalizer(moment);
 
 const apiService = new ApiService("http://localhost:8080");
-const trainingService = new TrainingService()
-const plannedTrainingService = new PlannedTrainingService()
+const trainingService = new TrainingService();
+const plannedTrainingService = new PlannedTrainingService();
 
 const MyCalendar = () => {
     const [events, setEvents] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [showPlannedModal, setShowPlannedModal] = useState(false);
     const [selectedTraining, setSelectedTraining] = useState(null);
     const [showAddModal, setShowAddModal] = useState(false);
 
@@ -27,16 +29,27 @@ const MyCalendar = () => {
             .then(([trainingsResponse, plannedTrainingsResponse]) => {
                 const trainingEvents = trainingService.mapToCalendarEvents(trainingsResponse.data);
                 const plannedTrainingEvents = plannedTrainingService.mapToCalendarEvents(plannedTrainingsResponse.data);
+                console.log(plannedTrainingEvents)
                 setEvents([...trainingEvents, ...plannedTrainingEvents]);
             })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
     }, []);
 
     const handleEventClick = (event) => {
         setSelectedTraining(event.training);
-        setShowModal(true);
+        if (event.isPlanned) {
+            setShowPlannedModal(true);
+        } else {
+            setShowModal(true);
+        }
     };
 
-    const handleClose = () => setShowModal(false);
+    const handleClose = () => {
+        setShowModal(false);
+        setShowPlannedModal(false);
+    };
 
     const handleAddClose = () => setShowAddModal(false);
     const handleAddOpen = () => setShowAddModal(true);
@@ -54,7 +67,6 @@ const MyCalendar = () => {
     };
 
     return (
-        // <div style={{ height: "100vh", width: "90vw", padding: "20px" }}>
         <div>
             <h1>Mój Kalendarz</h1>
             <Button onClick={handleAddOpen}>Add Training</Button>
@@ -68,11 +80,19 @@ const MyCalendar = () => {
                 eventPropGetter={eventPropGetter}
             />
             {selectedTraining && (
-            <TrainingModal
-                show={showModal}
-                handleClose={handleClose}
-                training={selectedTraining}
-            />)}
+                <>
+                    <TrainingModal
+                        show={showModal}
+                        handleClose={handleClose}
+                        training={selectedTraining}
+                    />
+                    <PlannedTrainingModal
+                        show={showPlannedModal}
+                        handleClose={handleClose}
+                        training={selectedTraining}
+                    />
+                </>
+            )}
             <AddTrainingModal
                 show={showAddModal}
                 handleClose={handleAddClose}
