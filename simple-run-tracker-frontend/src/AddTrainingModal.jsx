@@ -17,15 +17,28 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
         setSegments([...segments, { name: '', durationInSeconds: '', distanceInMeters: '', averageHeartRate: '' }]);
     };
 
+    const resetForm = () => {
+        setTrainingType('LONG');
+        setDate('');
+        setComment('');
+        setSegments([{ name: '', durationInSeconds: '', distanceInMeters: '', averageHeartRate: '' }]);
+    };
+
     const handleSubmit = () => {
         const newTraining = { trainingType, date, comment, segments };
         console.log(newTraining);
         handleSave(newTraining);
         handleClose();
+        resetForm();
+    };
+
+    const handleModalClose = () => {
+        handleClose();
+        resetForm();
     };
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleModalClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Add Training</Modal.Title>
             </Modal.Header>
@@ -82,7 +95,7 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Close</Button>
+                <Button variant="secondary" onClick={handleModalClose}>Close</Button>
                 <Button variant="primary" onClick={handleSubmit}>Save</Button>
             </Modal.Footer>
         </Modal>

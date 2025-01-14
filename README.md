@@ -19,7 +19,7 @@
 [x] Add training view into calendar
 [x] Add button and modal for creaing new training
 [x] Refreshing the calendar with new traing
-[ ] Clear data from adding modal after leave or save
+[x] Clear data from adding modal after leave or save
 [ ] Create page with data summarry
 [ ] Create dto for planned traing
 [ ] Add to Service option of get and post planned traing
