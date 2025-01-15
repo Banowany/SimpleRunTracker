@@ -79,6 +79,18 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
     - Zaznacz interesujący Cię zakres dat za pomocą pól wyboru daty.
     - Kliknij przycisk Generate Summary. System wygeneruje raport z odbytych treningów w wybranym okresie.
 
+# Patterns
+- Data Mapper
+- Data Transfer Object
+- Service Layer
+- Metadata Mapping
+- Repository
+- Model View Controller (MVC)
+- Front Controller
+- Identity Field
+- Foreign Key Mapping
+- Single Table Inheritance
+
 # TODO backend
 [x] Make empty project for backend
 [x] Set for H2 Database
