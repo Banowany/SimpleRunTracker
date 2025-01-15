@@ -92,6 +92,9 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 - Single Table Inheritance
 - Mapper
 
+# Class Diagram
+!(main.png)
+
 # TODO backend
 [x] Make empty project for backend
 [x] Set for H2 Database
