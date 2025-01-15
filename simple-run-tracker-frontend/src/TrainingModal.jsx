@@ -1,7 +1,12 @@
-// import React, { useState } from 'react';
-import {Modal, Button, Table} from 'react-bootstrap';
+import React from 'react';
+import { Modal, Button, Table } from 'react-bootstrap';
 
-const TrainingModal = ({ show, handleClose, training }) => {
+const TrainingModal = ({ show, handleClose, training, onDelete }) => {
+    const handleDelete = () => {
+        onDelete(training.id);
+        handleClose();
+    };
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -23,26 +28,22 @@ const TrainingModal = ({ show, handleClose, training }) => {
                     </tr>
                     </thead>
                     <tbody>
-                        {training.segments.map((segment, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{segment.name}</td>
-                                <td>{segment.durationInSeconds}</td>
-                                <td>{segment.distanceInMeters}</td>
-                                <td>{segment.averageHeartRate}</td>
-                            </tr>
-                        ))}
+                    {training.segments.map((segment, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{segment.name}</td>
+                            <td>{segment.durationInSeconds}</td>
+                            <td>{segment.distanceInMeters}</td>
+                            <td>{segment.averageHeartRate}</td>
+                        </tr>
+                    ))}
                     </tbody>
-
                 </Table>
-
-                {/*<ul>*/}
-                {/*    {training.segments.map((segment, index) => (*/}
-                {/*        <li key={index}>{segment.name}</li>*/}
-                {/*    ))}*/}
-                {/*</ul>*/}
             </Modal.Body>
             <Modal.Footer>
+                <Button variant="danger" onClick={handleDelete}>
+                    Delete
+                </Button>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>

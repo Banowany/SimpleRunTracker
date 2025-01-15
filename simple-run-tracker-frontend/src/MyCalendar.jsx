@@ -88,6 +88,20 @@ const MyCalendar = () => {
         });
     };
 
+    const handleDeleteTraining = (trainingId) => {
+        apiService.deleteTraining(trainingId).then(() => {
+            setEvents(events.filter(event => event.training.id !== trainingId));
+            setTrainings(trainings.filter(training => training.id !== trainingId));
+        });
+    };
+
+    const handleDeletePlannedTraining = (plannedTrainingId) => {
+        apiService.deletePlannedTraining(plannedTrainingId).then(() => {
+            setEvents(events.filter(event => event.training.id !== plannedTrainingId));
+            setPlannedTrainings(plannedTrainings.filter(plannedTraining => plannedTraining.id !== plannedTrainingId));
+        });
+    };
+
     const eventPropGetter = (event) => {
         const backgroundColor = event.color || 'blue'; // Default color if no color is specified
         return { style: { backgroundColor } };
@@ -127,11 +141,13 @@ const MyCalendar = () => {
                         show={showModal}
                         handleClose={handleClose}
                         training={selectedTraining}
+                        onDelete={handleDeleteTraining}
                     />
                     <PlannedTrainingModal
                         show={showPlannedModal}
                         handleClose={handleClose}
                         training={selectedTraining}
+                        onDelete={handleDeletePlannedTraining}
                     />
                 </>
             )}

@@ -32,4 +32,10 @@ public class CompletedTrainingController {
         List<CompletedTrainingDTO> trainings = completedTrainingService.getAllCompletedTrainings();
         return ResponseEntity.ok(trainings);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTraining(@PathVariable Long id) {
+        completedTrainingService.deleteTraining(id);
+        return ResponseEntity.noContent().build();
+    }
 }

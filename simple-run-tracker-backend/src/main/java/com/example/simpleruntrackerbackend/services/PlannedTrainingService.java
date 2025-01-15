@@ -93,4 +93,8 @@ public class PlannedTrainingService {
                 this::convertToPlannedTrainingDTO
         ).toList();
     }
+
+    public void deletePlannedTraining(Long id) {
+        plannedTrainingRepository.deleteById(id);
+    }
 }

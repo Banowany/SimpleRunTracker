@@ -36,6 +36,14 @@ class ApiService {
     addPlannedTraining(plannedTraining: PlannedTrainingDTO) : Promise<PlannedTrainingDTO> {
         return this.client.post("/api/planned-trainings", plannedTraining)
     }
+
+    deleteTraining(trainingId) {
+        return this.client.delete(`/api/trainings/${trainingId}`)
+    }
+
+    deletePlannedTraining(plannedTrainingId) {
+        return this.client.delete(`/api/planned-trainings/${plannedTrainingId}`)
+    }
 }
 
 export default ApiService;

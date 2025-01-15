@@ -120,7 +120,7 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 [x] Add to Service option of get and post planned traing
 [x] Add view for planned traing in calendar
 [x] Add button for planned training
-[ ] Add editing possibility
+[x] Add editing possibility
 [ ] Creating notification for nearest traing day before
 [x] Add verification of data
 [x] Disable verification on comment and average heart rate and planned pace

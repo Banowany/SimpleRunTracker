@@ -79,4 +79,8 @@ public class CompletedTrainingService {
                 this::convertToCompletedTrainingDTO
         ).toList();
     }
+
+    public void deleteTraining(Long id) {
+        completedTrainingRepository.deleteById(id);
+    }
 }

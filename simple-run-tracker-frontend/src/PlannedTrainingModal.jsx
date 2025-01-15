@@ -1,9 +1,12 @@
-// src/PlannedTrainingModal.jsx
 import React from 'react';
 import { Modal, Button, Table } from 'react-bootstrap';
 
-const PlannedTrainingModal = ({ show, handleClose, training }) => {
-    console.log(training);
+const PlannedTrainingModal = ({ show, handleClose, training, onDelete }) => {
+    const handleDelete = () => {
+        onDelete(training.id);
+        handleClose();
+    };
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -39,6 +42,9 @@ const PlannedTrainingModal = ({ show, handleClose, training }) => {
                 </Table>
             </Modal.Body>
             <Modal.Footer>
+                <Button variant="danger" onClick={handleDelete}>
+                    Delete
+                </Button>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
