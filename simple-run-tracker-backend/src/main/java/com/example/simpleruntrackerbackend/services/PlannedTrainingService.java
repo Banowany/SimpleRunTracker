@@ -8,6 +8,7 @@ import com.example.simpleruntrackerbackend.entities.segments.PlannedSegment;
 import com.example.simpleruntrackerbackend.entities.segments.PlannedTimeSegment;
 import com.example.simpleruntrackerbackend.entities.trainings.CompletedTraining;
 import com.example.simpleruntrackerbackend.entities.trainings.PlannedTraining;
+import com.example.simpleruntrackerbackend.mappers.PlannedTrainingMapper;
 import com.example.simpleruntrackerbackend.repositories.PlannedTrainingRepository;
 import com.example.simpleruntrackerbackend.repositories.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,77 +21,23 @@ import java.util.Optional;
 @Service
 public class PlannedTrainingService {
     private final PlannedTrainingRepository plannedTrainingRepository;
+    private final PlannedTrainingMapper plannedTrainingMapper;
 
     @Autowired
-    public PlannedTrainingService(PlannedTrainingRepository plannedTrainingRepository) {
+    public PlannedTrainingService(PlannedTrainingRepository plannedTrainingRepository, PlannedTrainingMapper plannedTrainingMapper) {
         this.plannedTrainingRepository = plannedTrainingRepository;
-    }
-
-    private PlannedSegment convertToPlannedSegment(PlannedSegmentDTO plannedSegmentDTO, PlannedTraining plannedTraining) {
-        if (plannedSegmentDTO.getPlanned_segment_type().equals("time")) {
-            var plannedTimeSegment = new PlannedTimeSegment();
-            plannedTimeSegment.setName(plannedSegmentDTO.getName());
-            plannedTimeSegment.setTraining(plannedTraining);
-            plannedTimeSegment.setPlannedPaceInSecondsPerKm(plannedSegmentDTO.getPlannedPaceInSecondsPerKm());
-            plannedTimeSegment.setPlannedDurationInSeconds(plannedSegmentDTO.getPlannedDurationInSeconds());
-            return plannedTimeSegment;
-        }
-        var plannedDistanceSegment = new PlannedDistanceSegment();
-        plannedDistanceSegment.setName(plannedSegmentDTO.getName());
-        plannedDistanceSegment.setTraining(plannedTraining);
-        plannedDistanceSegment.setPlannedPaceInSecondsPerKm(plannedSegmentDTO.getPlannedPaceInSecondsPerKm());
-        plannedDistanceSegment.setPlannedDistanceInMeters(plannedSegmentDTO.getPlannedDistanceInMeters());
-        return plannedDistanceSegment;
-    }
-
-    private PlannedTraining convertToPlannedTraining(PlannedTrainingDTO plannedTrainingDTO) {
-        var plannedTraining = new PlannedTraining();
-        plannedTraining.setTrainingType(TrainingType.valueOf(plannedTrainingDTO.getTrainingType()));
-        plannedTraining.setDate(LocalDate.parse(plannedTrainingDTO.getDate()));
-        plannedTraining.setComment(plannedTrainingDTO.getComment());
-        var plannedSegments = plannedTrainingDTO.getSegments().stream().map(
-                segment -> convertToPlannedSegment(segment, plannedTraining)
-        ).toList();
-        plannedTraining.setSegments(plannedSegments);
-        return plannedTraining;
-    }
-
-    private PlannedSegmentDTO convertToPlannedSegmentDTO(PlannedSegment plannedSegment) {
-        var plannedSegmentDTO = new PlannedSegmentDTO();
-        plannedSegmentDTO.setName(plannedSegment.getName());
-        plannedSegmentDTO.setPlannedPaceInSecondsPerKm(plannedSegment.getPlannedPaceInSecondsPerKm());
-        if (plannedSegment instanceof PlannedTimeSegment) {
-            plannedSegmentDTO.setPlannedDurationInSeconds(((PlannedTimeSegment) plannedSegment).getPlannedDurationInSeconds());
-            plannedSegmentDTO.setPlanned_segment_type("time");
-        } else {
-            plannedSegmentDTO.setPlannedDistanceInMeters(((PlannedDistanceSegment) plannedSegment).getPlannedDistanceInMeters());
-            plannedSegmentDTO.setPlanned_segment_type("distance");
-        }
-        return plannedSegmentDTO;
-    }
-
-    private PlannedTrainingDTO convertToPlannedTrainingDTO(PlannedTraining plannedTraining) {
-        var plannedTrainingDTO = new PlannedTrainingDTO();
-        plannedTrainingDTO.setId(plannedTraining.getId());
-        plannedTrainingDTO.setTrainingType(plannedTraining.getTrainingType().name());
-        plannedTrainingDTO.setDate(plannedTraining.getDate().toString());
-        plannedTrainingDTO.setComment(plannedTraining.getComment());
-        var plannedSegmentDTOs = plannedTraining.getSegments().stream().map(
-                this::convertToPlannedSegmentDTO
-        ).toList();
-        plannedTrainingDTO.setSegments(plannedSegmentDTOs);
-        return plannedTrainingDTO;
+        this.plannedTrainingMapper = plannedTrainingMapper;
     }
 
     public PlannedTrainingDTO createPlannedTraining(PlannedTrainingDTO plannedTrainingDTO) {
-        var plannedTraining = convertToPlannedTraining(plannedTrainingDTO);
+        var plannedTraining = plannedTrainingMapper.fromDTO(plannedTrainingDTO);
 
-        return convertToPlannedTrainingDTO(plannedTrainingRepository.save(plannedTraining));
+        return plannedTrainingMapper.toDTO(plannedTrainingRepository.save(plannedTraining));
     }
 
     public List<PlannedTrainingDTO> getAllPlannedTrainings() {
         return plannedTrainingRepository.findAll().stream().map(
-                this::convertToPlannedTrainingDTO
+                plannedTrainingMapper::toDTO
         ).toList();
     }
 

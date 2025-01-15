@@ -90,6 +90,7 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 - Identity Field
 - Foreign Key Mapping
 - Single Table Inheritance
+- Mapper
 
 # TODO backend
 [x] Make empty project for backend
