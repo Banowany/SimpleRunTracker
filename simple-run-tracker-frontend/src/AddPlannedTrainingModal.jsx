@@ -35,15 +35,15 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
             const convertedSegments = segments.map(segment => {
                 if (segment.planned_segment_type === 'time') {
                     return {
-                        name: segment.name,
-                        plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm,
+                        name: segment.name === '' ? null : segment.name,
+                        plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm === '' ? null : segment.plannedPaceInSecondsPerKm,
                         planned_segment_type: segment.planned_segment_type,
                         plannedDurationInSeconds: segment.plannedValue
                     };
                 } else {
                     return {
-                        name: segment.name,
-                        plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm,
+                        name: segment.name === '' ? null : segment.name,
+                        plannedPaceInSecondsPerKm: segment.plannedPaceInSecondsPerKm === '' ? null : segment.plannedPaceInSecondsPerKm,
                         planned_segment_type: segment.planned_segment_type,
                         plannedDistanceInMeters: segment.plannedValue
                     };
@@ -52,7 +52,7 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
             const newPlannedTraining = {
                 trainingType,
                 date,
-                comment,
+                comment: comment===''?null:comment,
                 segments: convertedSegments
             };
             handleSave(newPlannedTraining);
@@ -103,11 +103,8 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
                         <Form.Control
                             type="text"
                             value={comment}
-                            onChange={(e) => setComment(e.target.value)} required
+                            onChange={(e) => setComment(e.target.value)}
                         />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a comment.
-                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Segments</Form.Label>
@@ -129,21 +126,15 @@ const AddPlannedTrainingModal = ({ show, handleClose, handleSave }) => {
                                         <Form.Control
                                             type="text"
                                             value={segment.name}
-                                            onChange={(e) => handleSegmentChange(index, 'name', e.target.value)} required
+                                            onChange={(e) => handleSegmentChange(index, 'name', e.target.value)}
                                         />
-                                        <Form.Control.Feedback type="invalid">
-                                            Please provide a name.
-                                        </Form.Control.Feedback>
                                     </td>
                                     <td>
                                         <Form.Control
                                             type="number"
                                             value={segment.plannedPaceInSecondsPerKm}
-                                            onChange={(e) => handleSegmentChange(index, 'plannedPaceInSecondsPerKm', e.target.value)} required
+                                            onChange={(e) => handleSegmentChange(index, 'plannedPaceInSecondsPerKm', e.target.value)}
                                         />
-                                        <Form.Control.Feedback type="invalid">
-                                            Please provide a planned pace.
-                                        </Form.Control.Feedback>
                                     </td>
                                     <td>
                                         <Form.Control

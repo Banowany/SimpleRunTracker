@@ -1,6 +1,6 @@
 export interface SegmentDTO {
     // id: number
-    name: string
+    name?: string
     durationInSeconds: number
     distanceInMeters: number
     averageHeartRate?: number

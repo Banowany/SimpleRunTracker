@@ -26,13 +26,13 @@ import jakarta.persistence.InheritanceType;
         )
 })
 public class PlannedSegment extends Segment {
-    private int plannedPaceInSecondsPerKm;
+    private Integer plannedPaceInSecondsPerKm;
 
-    public int getPlannedPaceInSecondsPerKm() {
+    public Integer getPlannedPaceInSecondsPerKm() {
         return plannedPaceInSecondsPerKm;
     }
 
-    public void setPlannedPaceInSecondsPerKm(int plannedPaceInSecondsPerKm) {
+    public void setPlannedPaceInSecondsPerKm(Integer plannedPaceInSecondsPerKm) {
         this.plannedPaceInSecondsPerKm = plannedPaceInSecondsPerKm;
     }
 }

@@ -27,12 +27,29 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
         setValidated(false);
     };
 
+    //map segments to segments where empty strings are replaced with null
+    const mapSegments = (segments) => {
+        return segments.map(segment => {
+            return {
+                name: segment.name === '' ? null : segment.name,
+                durationInSeconds: segment.durationInSeconds,
+                distanceInMeters: segment.distanceInMeters,
+                averageHeartRate: segment.averageHeartRate === '' ? null : segment.averageHeartRate
+            };
+        });
+    }
+
     const handleSubmit = () => {
         const form = formRef.current;
         if (form.checkValidity() === false) {
             form.reportValidity();
         } else {
-            const newTraining = { trainingType, date, comment, segments };
+            const newTraining = {
+                trainingType,
+                date,
+                comment: comment===''?null:comment,
+                segments: mapSegments(segments)
+            };
             handleSave(newTraining);
             handleClose();
             resetForm();
@@ -73,10 +90,7 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
                     </Form.Group>
                     <Form.Group controlId="comment">
                         <Form.Label>Comment</Form.Label>
-                        <Form.Control type="text" value={comment} onChange={(e) => setComment(e.target.value)} required />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a comment.
-                        </Form.Control.Feedback>
+                        <Form.Control type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
                     </Form.Group>
                     <Form.Label>Segments</Form.Label>
                     <Table striped bordered hover>
@@ -94,10 +108,7 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>
-                                    <Form.Control type="text" value={segment.name} onChange={(e) => handleSegmentChange(index, 'name', e.target.value)} required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a name.
-                                    </Form.Control.Feedback>
+                                    <Form.Control type="text" value={segment.name} onChange={(e) => handleSegmentChange(index, 'name', e.target.value)} />
                                 </td>
                                 <td>
                                     <Form.Control type="number" value={segment.durationInSeconds} onChange={(e) => handleSegmentChange(index, 'durationInSeconds', e.target.value)} required />
@@ -112,10 +123,7 @@ const AddTrainingModal = ({ show, handleClose, handleSave }) => {
                                     </Form.Control.Feedback>
                                 </td>
                                 <td>
-                                    <Form.Control type="number" value={segment.averageHeartRate} onChange={(e) => handleSegmentChange(index, 'averageHeartRate', e.target.value)} required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide an average heart rate.
-                                    </Form.Control.Feedback>
+                                    <Form.Control type="number" value={segment.averageHeartRate} onChange={(e) => handleSegmentChange(index, 'averageHeartRate', e.target.value)} />
                                 </td>
                             </tr>
                         ))}

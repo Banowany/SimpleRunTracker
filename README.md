@@ -102,6 +102,7 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 [x] Make endpoints for planned training
 [x] Switch to normal database
 [ ] Remove BeginDataLoader and save data in normal database
+[ ] Make mappers
 
 # TODO frontend
 [x] Create empty project for frontend in react
@@ -122,4 +123,4 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 [ ] Add editing possibility
 [ ] Creating notification for nearest traing day before
 [x] Add verification of data
-[ ] Disable verification on comment and average heart rate and planned pace
+[x] Disable verification on comment and average heart rate and planned pace

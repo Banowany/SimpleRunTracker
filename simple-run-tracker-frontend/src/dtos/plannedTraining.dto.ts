@@ -4,6 +4,6 @@ export interface PlannedTrainingDTO {
     id: number;
     trainingType: string;
     date: string;
-    comment: string;
+    comment?: string;
     plannedSegments: PlannedSegmentDTO[];
 }

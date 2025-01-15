@@ -4,6 +4,6 @@ export interface TrainingDTO {
     id: number
     trainingType: string
     date: string //yyyy-mm-dd
-    comment: string
+    comment?: string
     segments: SegmentDTO[]
 }
