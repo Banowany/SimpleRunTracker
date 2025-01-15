@@ -1,3 +1,84 @@
+# How to run
+## Requirements
+- Docker
+- Gradle
+- JDK 17
+- Node.js
+- npm
+## Process
+1. Run this command for starting the postgresql database container
+```bash
+docker run --name postgres-database  -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+```
+2. Run backend service using this commands
+```bash
+cd simple-run-tracker-backend
+gradle bootRun
+```
+
+3. Run frontend service using this commands
+```bash
+cd simple-run-tracker-frontend
+npm install
+npm run dev
+```
+
+# Description
+Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie treningami oraz generowanie podsumowań z odbytych sesji treningowych. Dzięki kalendarzowi użytkownik może łatwo zobaczyć zaplanowane i zrealizowane treningi, a także dodać nowe treningi do swojego harmonogramu. Sekcja podsumowań pozwala na wygenerowanie raportu z wybranego okresu.
+
+# User interface
+- Górny pasek nawigacyjny:
+    - Znajduje się na górze każdej strony aplikacji.
+    - Zawiera linki do sekcji: "Calendar" i "Summarry
+- Strona Główna (Sekcja Calendar)
+    - Wyświetla kalendarz oraz listę z odbytymi i planowanymi treningami
+    - Kolor zielony reprezentuje odbyty a fioletowy planowany trening
+    - Obok kalendarza znajdują się przyciski:
+        - "Today", "Back", "Next" do poruszania się po kalendarzu
+        - "Add Training" do dodawania odbytych treningów
+        - "Add Planned Training" do planowania treningu
+    - Obok każdego treningu na liście znajduje przycisk "Details" 
+- Szczegóły treningu
+    - Po kliknieciu na trening w kalendarzu lub przycisk "Details" w liscie
+    - Pokazuje dane typ treningu, kometarz, oraz szczegóły segmentów
+- Dodawanie Treningu
+    - Po kliknięciu na przycisk "Add Training"
+    - Uzytkownik uzupelnia dane treningu
+    - Obowiazkowe pola to:
+        - Rodzaj treningu
+        - data
+        - distance w segmentach
+        - time w segmentach
+- Planowanie Treningu
+    - Po kliknięciu na przycisk "Add Planned Training"
+    - Uzytkownik uzupelnia parametry planowanego treningu
+    - Obowiazkowe pola to:
+        - Rodzaj treningu
+        - data
+        - goal w segmentach
+        - value w segmentach, który reprezntuje sekundy lub metry w zaleznosci od wybranego goal 
+- Generowanie Podsumowań
+    - Po kliknięciu "Summary" w pasku nawigacyjnym
+    - Posiada dwa pola z datą reprezentującą zekres, z którego chcemy podsumowanie oraz przycisk "Generate Summary"
+    - Po nacisnięciu "Generate Summary" wyświetla je ponizej
+
+# Usage examples
+- Dodawanie nowego treningu
+    - Wejdź do sekcji kalendarza i kliknij przycisk Add Training.
+    - W wyświetlonym formularzu uzpełnij dane, o które prosi.
+    - Po uzupełnieniu wszystkich danych kliknij „Zapisz”. Trening pojawi się na kalendarzu oraz na liście.
+- Dodawanie planowanego treningu
+    - Wejdź do sekcji kalendarza i kliknij przycisk Add Planned Training.
+    - W wyświetlonym formularzu uzpełnij dane, o które prosi.
+    - Po uzupełnieniu wszystkich danych kliknij „Zapisz”. Planowany Trening pojawi się na kalendarzu oraz na liście. 
+- Wyświetlanie szczegółów treningu:
+    - Kliknij na dowolny trening w kalendarzu lub wybierz przycisk Details obok treningu na liście.
+    - Otworzy się modalne okno z pełnymi szczegółami dotyczącymi wybranego treningu, takimi jak data, rodzaj treningu, notatki itp.
+- Generowanie podsumowania:
+    - Przejdź do sekcji Podsumowanie klikając odpowiedni link w navbarze.
+    - Zaznacz interesujący Cię zakres dat za pomocą pól wyboru daty.
+    - Kliknij przycisk Generate Summary. System wygeneruje raport z odbytych treningów w wybranym okresie.
+
 # TODO backend
 [x] Make empty project for backend
 [x] Set for H2 Database
@@ -28,4 +109,5 @@
 [x] Add button for planned training
 [ ] Add editing possibility
 [ ] Creating notification for nearest traing day before
-[ ] Add verification of data
+[x] Add verification of data
+[ ] Disable verification on comment and average heart rate and planned pace
