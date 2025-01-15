@@ -6,17 +6,17 @@
 - Node.js
 - npm
 ## Process
-1. Run this command for starting the postgresql database container
+1. Run this command to start the PostgreSQL database container
 ```bash
 docker run --name postgres-database  -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
 ```
-2. Run backend service using this commands
+2. Run the backend service using these commands
 ```bash
 cd simple-run-tracker-backend
 gradle bootRun
 ```
 
-3. Run frontend service using this commands
+3. Run the frontend service using these commands
 ```bash
 cd simple-run-tracker-frontend
 npm install
@@ -24,89 +24,99 @@ npm run dev
 ```
 
 # Description
-Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie treningami oraz generowanie podsumowań z odbytych sesji treningowych. Dzięki kalendarzowi użytkownik może łatwo zobaczyć zaplanowane i zrealizowane treningi, a także dodać nowe treningi do swojego harmonogramu. Sekcja podsumowań pozwala na wygenerowanie raportu z wybranego okresu.
+The Simple Training Tracker application allows the user to manage workouts and generate summaries of completed training sessions. With the calendar, the user can easily see scheduled and completed workouts, as well as add new workouts to their schedule. The summary section allows generating a report for a selected period.
 
 # User interface
-- Górny pasek nawigacyjny:
-    - Znajduje się na górze każdej strony aplikacji.
-    - Zawiera linki do sekcji: "Calendar" i "Summarry
-- Strona Główna (Sekcja Calendar)
-    - Wyświetla kalendarz oraz listę z odbytymi i planowanymi treningami
-    - Kolor zielony reprezentuje odbyty a fioletowy planowany trening
-    - Obok kalendarza znajdują się przyciski:
-        - "Today", "Back", "Next" do poruszania się po kalendarzu
-        - "Add Training" do dodawania odbytych treningów
-        - "Add Planned Training" do planowania treningu
-    - Obok każdego treningu na liście znajduje przycisk "Details" 
-- Szczegóły treningu
-    - Po kliknieciu na trening w kalendarzu lub przycisk "Details" w liscie
-    - Pokazuje dane typ treningu, kometarz, oraz szczegóły segmentów
-- Dodawanie Treningu
-    - Po kliknięciu na przycisk "Add Training"
-    - Uzytkownik uzupelnia dane treningu
-    - Obowiazkowe pola to:
-        - Rodzaj treningu
-        - data
-        - distance w segmentach
-        - time w segmentach
-- Planowanie Treningu
-    - Po kliknięciu na przycisk "Add Planned Training"
-    - Uzytkownik uzupelnia parametry planowanego treningu
-    - Obowiazkowe pola to:
-        - Rodzaj treningu
-        - data
-        - goal w segmentach
-        - value w segmentach, który reprezntuje sekundy lub metry w zaleznosci od wybranego goal 
-- Generowanie Podsumowań
-    - Po kliknięciu "Summary" w pasku nawigacyjnym
-    - Posiada dwa pola z datą reprezentującą zekres, z którego chcemy podsumowanie oraz przycisk "Generate Summary"
-    - Po nacisnięciu "Generate Summary" wyświetla je ponizej
+- Top navigation bar:
+    - Located at the top of every page of the application.
+    - Contains links to the sections: "Calendar" and "Summary".
+- Home Page (Calendar Section)
+    - Displays the calendar and a list of completed and planned workouts.
+    - Green color represents completed and purple represents planned workouts.
+    - Next to the calendar, there are buttons:
+        - "Today", "Back", "Next" for navigating the calendar.
+        - "Add Training" for adding completed workouts.
+        - "Add Planned Training" for planning a workout.
+    - Next to each workout on the list, there is a "Details" button.
+- Workout Details
+    - After clicking on a workout in the calendar or the "Details" button in the list.
+    - Shows data such as workout type, comment, and segment details.
+- Adding a Workout
+    - After clicking the "Add Training" button.
+    - The user fills in the workout data.
+    - Mandatory fields are:
+        - Workout type
+        - Date
+        - Distance in segments
+        - Time in segments
+- Planning a Workout
+    - After clicking the "Add Planned Training" button.
+    - The user fills in the parameters of the planned workout.
+    - Mandatory fields are:
+        - Workout type
+        - Date
+        - Goal in segments
+        - Value in segments, which represents seconds or meters depending on the selected goal.
+- Generating Summaries
+    - After clicking "Summary" in the navigation bar.
+    - Has two date fields representing the range for which we want the summary and a "Generate Summary" button.
+    - After clicking "Generate Summary", it is displayed below.
 
 # Usage examples
-- Dodawanie nowego treningu
-    - Wejdź do sekcji kalendarza i kliknij przycisk Add Training.
-    - W wyświetlonym formularzu uzpełnij dane, o które prosi.
-    - Po uzupełnieniu wszystkich danych kliknij „Zapisz”. Trening pojawi się na kalendarzu oraz na liście.
-- Dodawanie planowanego treningu
-    - Wejdź do sekcji kalendarza i kliknij przycisk Add Planned Training.
-    - W wyświetlonym formularzu uzpełnij dane, o które prosi.
-    - Po uzupełnieniu wszystkich danych kliknij „Zapisz”. Planowany Trening pojawi się na kalendarzu oraz na liście. 
-- Wyświetlanie szczegółów treningu:
-    - Kliknij na dowolny trening w kalendarzu lub wybierz przycisk Details obok treningu na liście.
-    - Otworzy się modalne okno z pełnymi szczegółami dotyczącymi wybranego treningu, takimi jak data, rodzaj treningu, notatki itp.
-- Generowanie podsumowania:
-    - Przejdź do sekcji Podsumowanie klikając odpowiedni link w navbarze.
-    - Zaznacz interesujący Cię zakres dat za pomocą pól wyboru daty.
-    - Kliknij przycisk Generate Summary. System wygeneruje raport z odbytych treningów w wybranym okresie.
+- Adding a new workout
+    - Go to the calendar section and click the Add Training button.
+    - In the displayed form, fill in the requested data.
+    - After filling in all the data, click "Save". The workout will appear on the calendar and on the list.
+- Adding a planned workout
+    - Go to the calendar section and click the Add Planned Training button.
+    - In the displayed form, fill in the requested data.
+    - After filling in all the data, click "Save". The planned workout will appear on the calendar and on the list.
+- Viewing workout details:
+    - Click on any workout in the calendar or select the Details button next to the workout on the list.
+    - A modal window will open with full details of the selected workout, such as date, workout type, notes, etc.
+- Generating a summary:
+    - Go to the Summary section by clicking the appropriate link in the navbar.
+    - Select the date range you are interested in using the date picker fields.
+    - Click the Generate Summary button. The system will generate a report of the workouts completed in the selected period.
 
 # Patterns
-- Service layer - skondensowanie logik biznesowych w jednym miejscu. Ulatwia pozniejsza modyfikacje i zwieksza czytelnosc
+- Service layer
     - CompletedTrainingService, PlannedTrainingService, TrainingSummaryService
-- Data Mapper - Przeksztalca obiektow na dane do bazy danych(nie musialem tworzyc bazy uzywajac klasycznego sql)
+    - why is used: To consolidate business logic in one place for easier modification and readability.
+- Data Mapper
     - Training, CompletedTraining, PlannedTraining
     - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
-- Identity Field - zeby latwiej wykonywac pozniejsze operacje CRUD
+    - why is used: To transform objects into database data without using traditional SQL.
+- Identity Field
     - Training, CompletedTraining, PlannedTraining
     - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
-- Foreign Key Mapping - zdefiniowanie relacji potrzebnej przy potrzebie usuniecia treningu
+    - why is used: To simplify subsequent CRUD operations.
+- Foreign Key Mapping
     - Training, Segment
-- Single Table Inheritance - trening planowany i wykonany oraz 3 rodzaje segmentow w jednej tabeli
+    - why is used: To define relationships between entities for easier data manipulation.
+- Single Table Inheritance
     - Training, CompletedTraining, PlannedTraining
     - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
+    - why is used: To store different types of related entities in a single table.
 - Repository
     - CompletedTrainingRepository, PlannedTrainingRepository
+    - why is used: To abstract data access and provide a centralized data handling mechanism.
 - Model View Controller
     - Spring: Model and Controller
     - React: View
-- Front Controller - automatycznie obslugiwany
+    - why is used: To separate concerns and improve code maintainability.
+- Front Controller - automatically handled
     - CompletedTrainingController, PlannedTrainingController, TrainingSummaryController
+    - why is used: To handle all incoming requests through a single entry point.
 - Data Transfer Object
     - TrainingSummary
     - CompletedTrainingDTO, CompletedSegmentDTO
-    - PlannedTraingDTO, PlannedSegmentDTO
+    - PlannedTrainingDTO, PlannedSegmentDTO
+    - why is used: To transfer data between layers without exposing the underlying entities.
 - Mapper
     - CompletedSegmentMapper, CompletedTrainingMapper
     - PlannedSegmentMapper, PlannedTrainingMapper
+    - why is used: To convert between DTOs and entities.
 
 # Class Diagram
 ![alt uml_diagram_image](main.png)
@@ -115,10 +125,10 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 [x] Make empty project for backend
 [x] Set for H2 Database
 [x] Create Training entity
-[x] Creating basic endpoints for enity
-[x] Fill with example data on the begining
-[x] Create endpoint which gets summarry
-[x] Creating planned traing (Set goal: time or distance) - single table inheritance
+[x] Creating basic endpoints for entity
+[x] Fill with example data at the beginning
+[x] Create endpoint which gets summary
+[x] Creating planned training (Set goal: time or distance) - single table inheritance
 [x] Make endpoints for planned training
 [x] Switch to normal database
 [ ] Remove BeginDataLoader and save data in normal database
@@ -126,21 +136,21 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 
 # TODO frontend
 [x] Create empty project for frontend in react
-[x] Create DTO for completed traing instances
+[x] Create DTO for completed training instances
 [x] Create Service for get and post training instances
-[x] Create page which list all of trainings as list
+[x] Create page which lists all trainings as a list
 [x] Create page with calendar view
 [x] Add training view into calendar
-[x] Add button and modal for creaing new training
-[x] Refreshing the calendar with new traing
+[x] Add button and modal for creating new training
+[x] Refresh the calendar with new training
 [x] Clear data from adding modal after leave or save
-[x] Create page with data summarry
-[x] Add rooting
-[x] Create dto for planned traing
-[x] Add to Service option of get and post planned traing
-[x] Add view for planned traing in calendar
+[x] Create page with data summary
+[x] Add routing
+[x] Create dto for planned training
+[x] Add to Service option of get and post planned training
+[x] Add view for planned training in calendar
 [x] Add button for planned training
 [x] Add editing possibility
-[ ] Creating notification for nearest traing day before
+[ ] Creating notification for nearest training day before
 [x] Add verification of data
 [x] Disable verification on comment and average heart rate and planned pace
