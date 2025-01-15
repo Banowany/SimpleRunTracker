@@ -93,7 +93,7 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 - Mapper
 
 # Class Diagram
-!(main.png)
+![alt uml_diagram_image](main.png)
 
 # TODO backend
 [x] Make empty project for backend
