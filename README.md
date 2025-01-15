@@ -80,17 +80,33 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
     - Kliknij przycisk Generate Summary. System wygeneruje raport z odbytych treningów w wybranym okresie.
 
 # Patterns
-- Data Mapper
-- Data Transfer Object
-- Service Layer
-- Metadata Mapping
+- Service layer - skondensowanie logik biznesowych w jednym miejscu. Ulatwia pozniejsza modyfikacje i zwieksza czytelnosc
+    - CompletedTrainingService, PlannedTrainingService, TrainingSummaryService
+- Data Mapper - Przeksztalca obiektow na dane do bazy danych(nie musialem tworzyc bazy uzywajac klasycznego sql)
+    - Training, CompletedTraining, PlannedTraining
+    - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
+- Identity Field - zeby latwiej wykonywac pozniejsze operacje CRUD
+    - Training, CompletedTraining, PlannedTraining
+    - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
+- Foreign Key Mapping - zdefiniowanie relacji potrzebnej przy potrzebie usuniecia treningu
+    - Training, Segment
+- Single Table Inheritance - trening planowany i wykonany oraz 3 rodzaje segmentow w jednej tabeli
+    - Training, CompletedTraining, PlannedTraining
+    - Segment, CompletedSegment, PlannedSegment, PlannedDistanceSegment, PlannedTimeSegment
 - Repository
-- Model View Controller (MVC)
-- Front Controller
-- Identity Field
-- Foreign Key Mapping
-- Single Table Inheritance
+    - CompletedTrainingRepository, PlannedTrainingRepository
+- Model View Controller
+    - Spring: Model and Controller
+    - React: View
+- Front Controller - automatycznie obslugiwany
+    - CompletedTrainingController, PlannedTrainingController, TrainingSummaryController
+- Data Transfer Object
+    - TrainingSummary
+    - CompletedTrainingDTO, CompletedSegmentDTO
+    - PlannedTraingDTO, PlannedSegmentDTO
 - Mapper
+    - CompletedSegmentMapper, CompletedTrainingMapper
+    - PlannedSegmentMapper, PlannedTrainingMapper
 
 # Class Diagram
 ![alt uml_diagram_image](main.png)
