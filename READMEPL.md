@@ -120,37 +120,3 @@ Aplikacja Simple Training Tracker umożliwia użytkownikowi zarządzanie trening
 
 # Diagram klas
 ![alt uml_diagram_image](main.png)
-
-# TODO backend
-[x] Utwórz pusty projekt dla backendu
-[x] Skonfiguruj bazę danych H2
-[x] Utwórz encję Training
-[x] Tworzenie podstawowych punktów końcowych dla encji
-[x] Wypełnij przykładowymi danymi na początku
-[x] Utwórz punkt końcowy, który pobiera podsumowanie
-[x] Tworzenie planowanego treningu (Ustaw cel: czas lub dystans) - dziedziczenie pojedynczej tabeli
-[x] Utwórz punkty końcowe dla planowanego treningu
-[x] Przełącz na normalną bazę danych
-[ ] Usuń BeginDataLoader i zapisz dane w normalnej bazie danych
-[ ] Utwórz mapery
-
-# TODO frontend
-[x] Utwórz pusty projekt dla frontend w react
-[x] Utwórz DTO dla ukończonych instancji treningowych
-[x] Utwórz serwis do pobierania i wysyłania instancji treningowych
-[x] Utwórz stronę, która wyświetla wszystkie treningi jako listę
-[x] Utwórz stronę z widokiem kalendarza
-[x] Dodaj widok treningu do kalendarza
-[x] Dodaj przycisk i modal do tworzenia nowego treningu
-[x] Odśwież kalendarz nowym treningiem
-[x] Wyczyść dane z modalu dodawania po opuszczeniu lub zapisaniu
-[x] Utwórz stronę z podsumowaniem danych
-[x] Dodaj routing
-[x] Utwórz dto dla planowanego treningu
-[x] Dodaj do serwisu opcję pobierania i wysyłania planowanego treningu
-[x] Dodaj widok planowanego treningu w kalendarzu
-[x] Dodaj przycisk do planowanego treningu
-[x] Dodaj możliwość edycji
-[ ] Tworzenie powiadomienia na dzień przed najbliższym treningiem
-[x] Dodaj weryfikację danych
-[x] Wyłącz weryfikację na komentarz i średnie tętno oraz planowane tempo

@@ -120,37 +120,3 @@ The Simple Training Tracker application allows the user to manage workouts and g
 
 # Class Diagram
 ![alt uml_diagram_image](main.png)
-
-# TODO backend
-[x] Make empty project for backend
-[x] Set for H2 Database
-[x] Create Training entity
-[x] Creating basic endpoints for entity
-[x] Fill with example data at the beginning
-[x] Create endpoint which gets summary
-[x] Creating planned training (Set goal: time or distance) - single table inheritance
-[x] Make endpoints for planned training
-[x] Switch to normal database
-[ ] Remove BeginDataLoader and save data in normal database
-[ ] Make mappers
-
-# TODO frontend
-[x] Create empty project for frontend in react
-[x] Create DTO for completed training instances
-[x] Create Service for get and post training instances
-[x] Create page which lists all trainings as a list
-[x] Create page with calendar view
-[x] Add training view into calendar
-[x] Add button and modal for creating new training
-[x] Refresh the calendar with new training
-[x] Clear data from adding modal after leave or save
-[x] Create page with data summary
-[x] Add routing
-[x] Create dto for planned training
-[x] Add to Service option of get and post planned training
-[x] Add view for planned training in calendar
-[x] Add button for planned training
-[x] Add editing possibility
-[ ] Creating notification for nearest training day before
-[x] Add verification of data
-[x] Disable verification on comment and average heart rate and planned pace
